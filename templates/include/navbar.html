@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav me-auto">
+        <a class="nav-link active" aria-current="page" href="{% url 'home:blog' %}">Home</a>
+        <a class="nav-link active" aria-current="page" href="{% url 'home:projects' %}">my projects</a>
+        <a class="nav-link" href="#">about me</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <span class="navbar-text me-3" style="color: #7de527;">Welcome, {{ user.username }}!</span>
+          <a class="nav-link" style="color: #e51017;" href="{% url 'accounts:logout' %}" >Logout</a>
+        {% else %}
+          <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h2>sign up</h2>
+
+    <form id="signup-form" action="", method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="singup">
+    </from>
+
+    <style>
+        #signup-form {
+            max-width: 50%;
+        }
+    </style>
+
+{% endblock %}
