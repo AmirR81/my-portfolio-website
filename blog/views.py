@@ -14,6 +14,7 @@ class ProjectListView(ListView):
     model = Project
     template_name = 'blog/project_list.html'
     context_object_name = 'projects'
+    
 
 class ProjectDetailView(DetailView):
     model = Project

@@ -13,6 +13,8 @@
         <br>
         <h5>Technology used:</h5>
         <p>{{ project.technology }}</p>
+        <br>
+        <h6>{{ project.created_at|date:"Y-M" }}</h6>
     </div>
 </div>
 {% endblock %}

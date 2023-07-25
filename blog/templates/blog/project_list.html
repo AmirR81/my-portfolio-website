@@ -9,8 +9,8 @@
                 <img class="card-img-top" src="{{ project.image.url }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.description }}</p>
-                    <a href="{% url 'home:project_detail' project.pk %}"
+                    <p class="card-text">{{ project.description|truncatewords:7 }}</p>
+                    <a href="{{ project.get_absolute_url }}"
                     class="btn btn-primary">
                         Read More
                     </a>
