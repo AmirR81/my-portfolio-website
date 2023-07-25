@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
@@ -10,6 +11,11 @@ class Project(models.Model):
     github_url = models.URLField(null=True, blank=True)
     is_featured = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ('-created_at',)
+
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('home:project_detail', args=(self.pk,))
