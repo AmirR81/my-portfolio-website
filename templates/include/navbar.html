@@ -13,7 +13,7 @@
       <div class="navbar-nav ms-auto">
         {% if user.is_authenticated %}
           <span class="navbar-text me-3" style="color: #7de527;">Welcome, {{ user.username }}!</span>
-          <a class="nav-link" style="color: #e51017;" href="{% url 'accounts:logout' %}" >Logout</a>
+          <a class="nav-link" style="color: #7d7b7b;" href="{% url 'accounts:logout' %}" >Logout</a>
         {% else %}
           <a class="nav-link" href="{% url 'accounts:signup' %}">Signup</a>
           <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>

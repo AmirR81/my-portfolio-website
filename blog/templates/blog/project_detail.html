@@ -16,27 +16,35 @@
             <br>
             <h6>{{ project.created_at|date:"Y-M" }}</h6>
         </div>
-    </div><hr>
+    </div>
 
     {% if request.user.is_authenticated %}
-        <form action="", method="post">
+        <form action="" method="post" style="margin-top: 1.3em;">
             {% csrf_token %}    
             {{ form.as_p }}
             <input type="submit", value="send">
-        </form>
+        </form><hr><br/>
     {% else %}
         <p class="alert alert-danger">Only registered users can leave comment, plz login!</p>
     {% endif %}
 
     {% for comment in comments %}
         <div class="card">
-            <p class="card-header">
-                {{ comment.user }} | {{ comment.created_at|timesince }}
-            </p>
-            <p class="card-body">
-                {{ comment.body }}
-            </p>
-        </div>
+            <p class="card-header">{{ comment.user }} | {{ comment.created_at|timesince }}</p>
+            <p class="card-body">{{ comment.body }}</p>
+
+            {% if request.user.is_authenticated %}
+               <form action="{% url 'home:comment_reply' pk=project.pk comment_pk=comment.pk %}", method="post">
+                {% csrf_token %}
+                {{ form_reply.as_p }}
+                <input type="submit", value="send">
+                </form> 
+            {% endif %}
+
+            {% for reply in comment.replycomment.all %}
+                <p>{{ reply.user }} <br/> {{ reply.body }} </p>
+            {% endfor %}
+        </div><br/>
     {% empty %}
         <p>No comments yet!</p>
     {% endfor %}
